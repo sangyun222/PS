@@ -1,28 +1,17 @@
 def solution(name:str):
+    l = len(name)
+
     res = 0
-    cur = list('A' * len(name))
-    idx = 0
+    for c in name:
+        res += min(ord(c) - ord('A'), 1 + ord('Z') - ord(c))
 
-    while True:
-        if cur[idx] != name[idx]:
-            res += min(ord(name[idx]) - ord('A'), 1 + ord('Z') - ord(name[idx]))
-            cur[idx] = name[idx]
+    tmp = l - 1
+    for i in range(l):
+        idx = i + 1
 
-        if cur == list(name): break
+        while idx < l and name[idx] == 'A': idx += 1
 
-        tmp = 0
-        while True:
-            tmp += 1
+        tmp = min(tmp, i * 2 + (l - idx))
+        tmp = min(tmp, (l - idx) * 2 + i)
 
-            if cur[(idx + tmp) % len(name)] != name[(idx + tmp) % len(name)]:
-                idx = (idx + tmp) % len(name)
-                res += tmp
-                break
-            elif cur[(idx - tmp) % len(name)] != name[(idx - tmp) % len(name)]:
-                idx = (idx - tmp) % len(name)
-                res += tmp
-                break
-
-
-
-    return res
+    return res + tmp
