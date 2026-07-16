@@ -1,17 +1,17 @@
 class Solution {
     public long gcdSum(int[] nums) {
-        ArrayList<Integer> prefixGcd = new ArrayList<>();
+        int[] prefixGcd = new int[nums.length];
         int mx = nums[0];
 
         for (int i = 0; i < nums.length; i++) {
             mx = Math.max(mx, nums[i]);
-            prefixGcd.add(gcd(nums[i], mx));
+            prefixGcd[i] = gcd(nums[i], mx);
         }
 
-        Collections.sort(prefixGcd);
+        Arrays.sort(prefixGcd);
         long res = 0;
-        int size = prefixGcd.size();
-        for (int i = 0; i < size / 2; i++) res += gcd(prefixGcd.get(i), prefixGcd.get(size - i - 1));
+        int size = prefixGcd.length;
+        for (int i = 0; i < size / 2; i++) res += gcd(prefixGcd[i], prefixGcd[size - i - 1]);
 
         return res;
     }
