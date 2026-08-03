@@ -225,14 +225,6 @@ Map<Integer, Integer> rankMap = new HashMap<>();
 
 ## 활용 예시 : Inversion Counting
 
-Inversion이란
-
-$$
-i<j,\quad arr[i]>arr[j]
-$$
-
-를 만족하는 쌍의 개수이다.
-
 배열을 왼쪽부터 탐색한다고 하자.
 
 현재까지 처리한 원소의 개수는
